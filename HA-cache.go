@@ -70,7 +70,8 @@ func (c *HACache) start() {
 	for {
 		content, err := c.queryDB(c.initArg)
 		if err != nil {
-			time.Sleep(3 * time.Second)
+			fmt.Printf("[ERROR] HA-singlegroup init %s queryDB failed: %v\n", c.name, err)
+			time.Sleep(time.Second)
 		} else {
 			c.content = content
 			c.initialized = true
